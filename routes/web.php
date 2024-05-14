@@ -24,7 +24,7 @@ Route::get('/', function () {
 Route::group(['prefix' => 'account'],function() {
     
     //guest middleware
-    Route::middleware(['guest','prevent-back-history'])->group( function() {
+    Route::middleware(['prevent-back-history','guest'])->group( function() {
          Route::get('/login',[LoginController::class,'index'])->name('account.login');
          Route::get('/register',[LoginController::class,'register'])->name('account.register');
          Route::post('/process-register',[LoginController::class,'processRegister'])->name('account.processRegister');
@@ -36,7 +36,7 @@ Route::group(['prefix' => 'account'],function() {
     //authentiated middlewar
         
    
-    Route::middleware(['auth','prevent-back-history'])->group( function() {
+    Route::middleware(['prevent-back-history','auth'])->group( function() {
         Route::get('/logout',[LoginController::class,'logout'])->name('account.logout');
         Route::get('/dashboard',[LoginController::class,'dashboard'])->name('account.dashboard');
 
