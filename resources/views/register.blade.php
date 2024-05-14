@@ -28,9 +28,9 @@
                                                 <input type="text" value="{{ old('name') }}" class="form-control @error('name')is-invalid @enderror" name="name" id="name" placeholder="user_name" >
                                                 <label for="name" class="form-label">Name</label>
                                                 @error('name')
-                                                      <span class="invalid-feedback">{{ $message }}</span>
-                                                    
-                                                @enderror
+                                                <span class="invalid-feedback">{{ $message }}</span>
+                                              
+                                          @enderror
                                             </div>
                                         </div>
                                         <div class="col-12">

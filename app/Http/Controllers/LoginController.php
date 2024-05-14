@@ -24,16 +24,16 @@ class LoginController extends Controller
 
         if($validator->passes()) {
           
-          if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
 
             return redirect()->route('account.dashboard');
             
           } else {
-            return redriect()->route('account.login')->with('Either email or password incorret');
+            return redirect()->route('verify')->with('Either email or password incorret');
           }
         }
         else{
-          return redirect()->route('account.login')
+          return redirect()->route('account.register')
           ->withInput()
           ->withErrors($validator);
           
