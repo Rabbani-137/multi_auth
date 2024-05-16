@@ -1,7 +1,8 @@
 <?php
-
+use App\Http\Controllers\admin\AdminLoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\appcontroller;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,34 +25,34 @@ Route::get('/', function () {
 Route::group(['prefix' => 'account'],function() {
     
     //guest middleware
-    Route::middleware(['guest','prevent-back-history'])->group( function() {
+    Route::middleware(['prevent-back-history','guest'])->group( function() {
          Route::get('/login',[LoginController::class,'index'])->name('account.login');
+         Route::post('/authenticate',[LoginController::class,'authenticate'])->name('account.authenticate');
          Route::get('/register',[LoginController::class,'register'])->name('account.register');
          Route::post('/process-register',[LoginController::class,'processRegister'])->name('account.processRegister');
-         Route::post('/authenticate',[LoginController::class,'authenticate'])->name('account.authenticate');
-        
-    
+         
     });
     
     //authentiated middlewar
         
    
-    Route::middleware(['auth','prevent-back-history'])->group( function() {
+    Route::middleware(['prevent-back-history','auth'])->group( function() {
         Route::get('/logout',[LoginController::class,'logout'])->name('account.logout');
-        Route::get('/dashboard',[LoginController::class,'dashboard'])->name('account.dashboard');
+        Route::get('/dashboard',[DashboardController::class,'index'])->name('account.dashboard');
 
         
     });
     
-    
-    
 });
 
 // Route::get('/account/logout',[LoginController::class,'logout'])->name('account.logout');
-Route::get('/verify',[LoginController::class,'index'])->name('verify');
+// Route::get('/verify',[LoginController::class,'index'])->name('verify');
 
 // Route::get('/account/dashboard',[LoginController::class,'dashboard'])->name('account.dashboard');
 
 // Route::get('/account/profile', function () {
 //     return view('register');
 // });
+
+
+// Route::get('admin/login',[AdminLoginController::class,'index'])->name('admin.login');

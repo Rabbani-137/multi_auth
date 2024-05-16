@@ -29,11 +29,11 @@ class LoginController extends Controller
             return redirect()->route('account.dashboard');
             
           } else {
-            return redirect()->route('verify')->with('Either email or password incorret');
+            return redirect()->route('account.register')->with('Either email or password incorret');
           }
         }
         else{
-          return redirect()->route('account.register')
+          return redirect()->route('account.login')
           ->withInput()
           ->withErrors($validator);
           
@@ -79,9 +79,9 @@ class LoginController extends Controller
       }
 
       
-      public function dashboard(){
-        return view('dashboard');
-      }
+      // public function dashboard(){
+      //   return view('dashboard');
+      // }
 
       public function logout(){
         Auth::logout();
