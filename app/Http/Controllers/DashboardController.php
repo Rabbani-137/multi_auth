@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class dashboard extends Controller
+class DashboardController extends Controller
 {
     //This method will show dashboard page for customer
     public function index(){

@@ -1,9 +1,10 @@
 <?php
-use App\Http\Controllers\admin\AdminLoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\appcontroller;
+use App\Http\Controllers\admin\AdminLoginController;
+
 use Illuminate\Support\Facades\Auth;
 
 
@@ -55,4 +56,4 @@ Route::group(['prefix' => 'account'],function() {
 // });
 
 
-// Route::get('admin/login',[AdminLoginController::class,'index'])->name('admin.login');
+ Route::get('admin/login',[AdminLoginController::class,'index'])->name('admin.login');
